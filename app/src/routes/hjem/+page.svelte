@@ -1,33 +1,17 @@
 <script lang="ts">
-  import images from "../../resources/mænd.json";
-  import { createColumns } from "../components/functions";
   import { head } from "../components/stores";
+  import ImageView from "../components/ImageView.svelte";
+  import { getImages } from "../components/functions";
+  import type { image } from "../components/types";
 
   $head = "/hjem";
-  const columns = createColumns(images);
+  const images: Promise<image[]> = getImages();
 </script>
 
-<div class="flex h-full w-full flex-row gap-4 p-4">
-  <div class="flex h-full w-1/2 flex-col gap-4">
-    {#each columns.left as image}
-      {#if image}
-        <img
-          src={image.src}
-          alt="stærk mand"
-          class="h-[50vh] w-full rounded-xl"
-        />
-      {/if}
-    {/each}
+{#await images}
+  <div class="flex h-full w-full items-center justify-center">
+    <p>Loading...</p>
   </div>
-  <div class="flex h-full w-1/2 flex-col gap-4">
-    {#each columns.right as image}
-      {#if image}
-        <img
-          src={image.src}
-          alt="stærk mand"
-          class="h-[50vh] w-full rounded-xl"
-        />
-      {/if}
-    {/each}
-  </div>
-</div>
+{:then images}
+  <ImageView {images} />
+{/await}
