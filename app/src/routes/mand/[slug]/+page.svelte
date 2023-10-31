@@ -10,10 +10,7 @@
 {:then image}
   <div class="flex flex-col gap-2 p-4">
     <div class="flex h-fit w-fit flex-row gap-4 rounded p-4">
-      <a
-        href="/hjem"
-        class="w-fit rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-800"
-        >{"<-"}</a
+      <a href="/hjem" class="w-fit rounded px-3 py-1 hover:underline">tilbage</a
       >
       {#each image.tags as tag}
         <div
