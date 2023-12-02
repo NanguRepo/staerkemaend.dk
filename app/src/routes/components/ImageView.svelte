@@ -6,7 +6,7 @@
   const columns = createColumns(images);
 </script>
 
-<div class="flex h-full w-full flex-row gap-4 p-4">
+<div class="flex h-full w-full flex-row gap-4">
   <div class="flex h-full w-1/2 flex-col gap-4">
     {#each columns.left as image, i}
       {#if image}
