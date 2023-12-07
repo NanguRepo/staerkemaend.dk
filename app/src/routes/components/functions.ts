@@ -1,4 +1,4 @@
-import type { image } from "./types";
+import type { image, tag } from "./types";
 import axios from "axios";
 import { images, tags } from "./stores";
 import { get } from "svelte/store";
@@ -25,11 +25,6 @@ export const getImages = async (): Promise<image[]> => {
   return response.data;
 };
 
-export interface tag {
-  count: number;
-  name: string;
-}
-
 export const getTags = async (): Promise<tag[]> => {
   if (get(tags).length) {
     return get(tags);
@@ -55,11 +50,11 @@ export const getImage = async (id: number): Promise<image> => {
   return response.data;
 };
 
-export const searchImage = async (tags: string[]): Promise<image[]> => {
+export const searchImage = async (tags: tag[]): Promise<image[]> => {
   const response = await axios.post(
     "https://api.pege.io/v2/staerkemaend/searchImage",
     {
-      tags: tags,
+      tags: tags.map((tag) => tag.name),
     },
   );
   return response.data;

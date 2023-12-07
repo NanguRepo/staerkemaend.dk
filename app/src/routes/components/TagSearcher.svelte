@@ -1,9 +1,9 @@
 <script lang="ts">
   import { getTags } from "./functions";
-  import type { tag } from "./functions";
+  import type { tag } from "./types";
+  import { selectedTags } from "./stores";
   let hovered: string | null = null;
   $: inputValue = "";
-  let selectedTags: tag[] = [];
   const sortByLength = (tags: tag[]): tag[] => {
     return tags.sort((a, b) => {
       return a.name.length - b.name.length;
@@ -32,8 +32,13 @@
     {#await getTags()}
       <p>Loading...</p>
     {:then tags}
+      {#if tags.length == $selectedTags.length}
+        <p class="p-2 text-neutral-600 dark:text-neutral-400">
+          Du har valgt alle tags!
+        </p>
+      {/if}
       {#each sortByCount(tags) as tag}
-        {#if (tag.name.includes(inputValue) || !inputValue) && !selectedTags.includes(tag)}
+        {#if (tag.name.includes(inputValue) || !inputValue) && !$selectedTags.includes(tag)}
           <button
             class="flex h-fit w-auto items-center gap-1 rounded-xl border border-neutral-300 bg-white pr-2 hover:border-neutral-600 dark:border-neutral-500 dark:bg-black dark:text-white dark:hover:border-neutral-300"
             on:mouseenter={() => {
@@ -43,7 +48,7 @@
               hovered = null;
             }}
             on:click={() => {
-              selectedTags = [...selectedTags, tag];
+              $selectedTags = [...$selectedTags, tag];
             }}
           >
             <p
@@ -61,8 +66,8 @@
   <div
     class="flex flex-wrap gap-1 rounded border border-neutral-300 bg-neutral-200 p-1 dark:border-neutral-400 dark:bg-neutral-900"
   >
-    {#if selectedTags.length}
-      {#each sortByLength(selectedTags) as tag}
+    {#if $selectedTags.length}
+      {#each sortByLength($selectedTags) as tag}
         <button
           class="flex h-fit w-auto items-center gap-1 rounded-xl border border-neutral-300 bg-white pr-2 hover:border-neutral-600 dark:border-neutral-500 dark:bg-black dark:text-white dark:hover:border-neutral-300"
           on:mouseenter={() => {
@@ -72,7 +77,7 @@
             hovered = null;
           }}
           on:click={() => {
-            selectedTags = selectedTags.filter((item) => {
+            $selectedTags = $selectedTags.filter((item) => {
               return item !== tag;
             });
           }}
