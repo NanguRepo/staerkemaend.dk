@@ -27,7 +27,7 @@
       {/await}
     {/if}
   </div>
-  <div class="sticky top-0 w-1/4">
+  <div class="sticky top-0 h-fit w-1/4">
     <TagSearcher />
   </div>
 </div>

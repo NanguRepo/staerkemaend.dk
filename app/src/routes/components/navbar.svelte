@@ -1,6 +1,6 @@
 <script lang="ts">
   import { head, previous } from "./stores";
-  const links = ["/hjem", "/om"];
+  const links = ["/hjem", "/om", "/upload"];
 </script>
 
 <nav class="flex flex-row justify-between gap-4 p-4">
