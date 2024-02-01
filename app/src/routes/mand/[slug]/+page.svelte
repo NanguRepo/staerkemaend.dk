@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import { getImage } from "../../components/functions";
-  import Box from "../../components/Box.svelte";
-  import { head, previous } from "../../components/stores";
+  import { getImage } from "$lib/components/functions";
+  import Box from "$lib/components/Box.svelte";
+  import { head, previous } from "$lib/components/stores";
   import { afterNavigate } from "$app/navigation";
   import { base } from "$app/paths";
 

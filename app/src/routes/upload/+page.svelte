@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import axios from "axios";
-  import { head } from "../components/stores";
+  import { head } from "$lib/components/stores";
   $head = "/upload";
 
   let files: any;

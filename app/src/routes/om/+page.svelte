@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { head } from "../components/stores";
+  import { head } from "$lib/components/stores";
   $head = "/om";
 </script>
 

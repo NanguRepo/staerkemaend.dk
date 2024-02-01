@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { head, selectedTags } from "../components/stores";
-  import ImageView from "../components/ImageView.svelte";
-  import TagSearcher from "../components/TagSearcher.svelte";
-  import { getImages, searchImage } from "../components/functions";
+  import { head, selectedTags } from "$lib/components/stores";
+  import ImageView from "$lib/components/ImageView.svelte";
+  import TagSearcher from "$lib/components/TagSearcher.svelte";
+  import { getImages, searchImage } from "$lib/components/functions";
 
   $head = "/hjem";
 </script>
