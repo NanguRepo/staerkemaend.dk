@@ -2,7 +2,23 @@
   import { getTags } from "./functions";
   import type { tag } from "./types";
   import { selectedTags } from "./stores";
+  import { onMount } from "svelte";
   let hovered: string | null = null;
+
+  onMount(async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("tags")) {
+      const queriedTags: string[] | undefined = urlParams
+        .get("tags")
+        ?.split(",");
+      const availableTags: tag[] = await getTags();
+      const validTags: tag[] = availableTags.filter((item) => {
+        return queriedTags?.includes(item.name);
+      });
+      $selectedTags = validTags;
+    }
+  });
+
   $: inputValue = "";
   const sortByLength = (tags: tag[]): tag[] => {
     return tags.sort((a, b) => {

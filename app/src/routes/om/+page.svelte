@@ -8,7 +8,7 @@
 >
   <article class="flex flex-col gap-2">
     <div>
-      <h1 class="text-3xl">Om stærkemænd.dk</h1>
+      <h1 class="text-3xl font-bold">Om stærkemænd.dk</h1>
       <h2 class="text-lg text-neutral-500">Danmarks bedste hjemmeside</h2>
     </div>
     <p>
